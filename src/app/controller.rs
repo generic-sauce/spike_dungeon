@@ -40,16 +40,16 @@ impl Controller {
 
     pub fn update(&mut self) {
         for (index, player_controller) in self.player_controllers.iter_mut().enumerate() {
-            let mut left: i32 = 0;
+            let mut right: i32 = 0;
             let mut up: i32 = 0;
 
-            if player_controller.keys[LEFT_KEY_INDEX].is_pressed()  { left += ACCELERATION; }
-            if player_controller.keys[RIGHT_KEY_INDEX].is_pressed() { left -= ACCELERATION; }
+            if player_controller.keys[LEFT_KEY_INDEX].is_pressed()  { right -= ACCELERATION; }
+            if player_controller.keys[RIGHT_KEY_INDEX].is_pressed() { right += ACCELERATION; }
 
-            if player_controller.keys[UP_KEY_INDEX].is_pressed()    { up += ACCELERATION; }
-            if player_controller.keys[DOWN_KEY_INDEX].is_pressed()  { up -= ACCELERATION; }
+            if player_controller.keys[UP_KEY_INDEX].is_pressed()    { up -= ACCELERATION; } // TODO change minus
+            if player_controller.keys[DOWN_KEY_INDEX].is_pressed()  { up += ACCELERATION; }
 
-            player_controller.player_direction.x = WorldCoord::new(left);
+            player_controller.player_direction.x = WorldCoord::new(right);
             player_controller.player_direction.y = WorldCoord::new(up);
         }
     }

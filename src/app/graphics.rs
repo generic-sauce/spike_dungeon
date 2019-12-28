@@ -1,5 +1,5 @@
 use sfml::system::{Vector2f};
-use sfml::graphics::{RenderTarget, RenderWindow, Color, RectangleShape, Shape, Transformable, Sprite};
+use sfml::graphics::{RenderTarget, RenderWindow, Color, RectangleShape, Shape, Transformable, Sprite, CircleShape};
 use sfml::window::{VideoMode, Style, Event};
 
 use crate::app::App;
@@ -33,5 +33,15 @@ impl App {
     }
 
     pub fn render(&mut self) -> () {
+        self.render_tiles();
+        self.render_players();
+    }
+
+    pub fn render_players(&mut self) {
+        for player in self.world.players.iter() {
+            let mut player_circle: CircleShape = CircleShape::new(32.0, 16);
+            player_circle.set_position(Vector2f::new(player.position.x.0 as f32, player.position.y.0 as f32));
+            self.window.draw(&player_circle);
+        }
     }
 }

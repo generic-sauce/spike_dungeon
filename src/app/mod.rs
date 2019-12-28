@@ -35,7 +35,7 @@ impl App {
             self.controller.update();
             self.world.update(&self.controller);
 
-            self.render_tiles();
+            self.render();
 
             self.window.display();
             self.window.clear(Color::rgb(0, 0, 0));
