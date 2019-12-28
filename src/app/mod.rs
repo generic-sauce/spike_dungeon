@@ -3,6 +3,8 @@ use crate::world::World;
 use sfml::graphics::{RenderTarget, RenderWindow, Color};
 use sfml::window::{VideoMode, Style, Event};
 
+mod graphics;
+
 pub struct App {
     window: RenderWindow,
 	#[allow(dead_code)]
@@ -22,8 +24,11 @@ impl App {
             while let Some(event) = self.window.poll_event() {
                 if event == Event::Closed {
                     self.window.close();
+                    break;
                 }
             }
+
+            self.render();
 
             self.window.display();
             self.window.clear(Color::rgb(0, 0, 0));
