@@ -8,6 +8,8 @@ pub struct World {
 
 impl World {
 	pub fn new() -> World {
-		unimplemented!()
+		World {
+			players: [Player::new(), Player::new()]
+		}
 	}
 }
