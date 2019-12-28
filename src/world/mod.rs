@@ -1,13 +1,16 @@
-mod player;
-mod tilemap;
+pub mod player;
+pub mod tilemap;
 
 use player::Player;
 use tilemap::TileMap;
 use crate::app::controller::Controller;
 
+pub const TILE_SIZE: i32 = 32;
+pub const TILE_SIZE_F: f32 = TILE_SIZE as f32;
+
 pub struct World {
-	players: [Player; 2],
-	tilemap: TileMap,
+	pub players: [Player; 2],
+	pub tilemap: TileMap,
 }
 
 impl World {

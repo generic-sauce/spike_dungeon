@@ -3,7 +3,7 @@ use crate::vec::{WorldCoord, WORLD_FACTOR};
 use std::ops::{Add, Mul, Sub};
 
 #[derive(Clone, Copy, PartialEq, Eq, Hash, Debug)]
-pub struct TileCoord(i32);
+pub struct TileCoord(pub i32);
 
 impl Add for TileCoord {
 	type Output = TileCoord;
@@ -30,7 +30,7 @@ impl Sub for TileCoord {
 }
 
 impl TileCoord {
-	pub fn new(x: i32) -> TileCoord { Self(x) }
+	pub const fn new(x: i32) -> TileCoord { Self(x) }
 
 	fn to_world_coord(self) -> WorldCoord {
 		WorldCoord::new(self.0 * WORLD_FACTOR)

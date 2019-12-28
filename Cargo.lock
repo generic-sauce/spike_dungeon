@@ -42,6 +42,11 @@ dependencies = [
 ]
 
 [[package]]
+name = "lazy_static"
+version = "1.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
 name = "sfml"
 version = "0.15.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -63,6 +68,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 name = "spike_dungeon"
 version = "0.1.0"
 dependencies = [
+ "lazy_static 1.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "sfml 0.15.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -77,6 +83,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 "checksum csfml-graphics-sys 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)" = "4e4f0c658045598446f1968df8acf047787e70dc44962686f54ec0d9835aed3e"
 "checksum csfml-system-sys 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)" = "0ebeefc2da7f0568d54eb798706bbb1aa6fd589cda7a84c1188b860773ace35d"
 "checksum csfml-window-sys 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)" = "1d8d000d0a6646167f7ccece9855718145c3e25ab738c9bc8ffeedfa17c41dd3"
+"checksum lazy_static 1.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 "checksum sfml 0.15.1 (registry+https://github.com/rust-lang/crates.io-index)" = "513d5e9ff2e56ae75c7ab943fbd15880fd685230d9ddc0abb853c1374ee66129"
 "checksum sfml-build 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)" = "4f83a1ad7f7c79c9273019b2abfacbd4fa7150d23caca8cae586f0f1ea43b151"
 "checksum widestring 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = "effc0e4ff8085673ea7b9b2e3c73f6bd4d118810c9009ed8f1e16bd96c331db6"
