@@ -17,7 +17,7 @@ impl World {
 	pub fn new() -> World {
 		World {
 			players: [Player::new(), Player::new()],
-			tilemap: TileMap::new(),
+			tilemap: TileMap::from_filename("./map.png"),
 		}
 	}
 
