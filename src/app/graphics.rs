@@ -21,13 +21,11 @@ impl App {
     }
 
     pub fn render_tiles(&mut self) {
-        let tiles = &self.world.tilemap.tiles;
 
         for y in 0..SIZE.x.0 as usize {
             for x in 0..SIZE.y.0 as usize {
-                self.render_tile(
-                    TileVec::new(TileCoord::new(x as i32), TileCoord::new(y as i32)),
-                    Color::rgb((x as i32 * 255 / SIZE.x.0) as u8, (y as i32 * 255 / SIZE.y.0) as u8, 0));
+				let c = self.world.tilemap.tiles[x][y].get_color().clone();
+                self.render_tile(TileVec::new(TileCoord::new(x as i32), TileCoord::new(y as i32)), c);
             }
         }
     }
