@@ -1,14 +1,17 @@
-use crate::world::World;
-
 use sfml::graphics::{RenderTarget, RenderWindow, Color};
 use sfml::window::{VideoMode, Style, Event};
 
+use crate::world::World;
+use crate::app::controller::Controller;
+
 mod graphics;
+mod controller;
 
 pub struct App {
     window: RenderWindow,
 	#[allow(dead_code)]
 	world: World,
+    controller: Controller
 }
 
 impl App {
@@ -16,6 +19,7 @@ impl App {
         App {
 			window: RenderWindow::new(VideoMode::fullscreen_modes()[0], "spike dungeon", Style::FULLSCREEN | Style::CLOSE, &Default::default()),
 			world: World::new(),
+            controller: Controller::new(),
 		}
     }
 
@@ -27,6 +31,8 @@ impl App {
                     break;
                 }
             }
+
+            self.controller.update();
 
             self.render();
 
