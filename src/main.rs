@@ -1,6 +1,8 @@
 extern crate sfml;
 #[macro_use]
 extern crate lazy_static;
+#[macro_use]
+extern crate itertools;
 
 mod app;
 mod vec;
