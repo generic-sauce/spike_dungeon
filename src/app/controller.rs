@@ -1,35 +1,60 @@
 use sfml::window::Key;
 use crate::vec::{WorldVec, WorldCoord};
 
-const UP_KEY: Key = Key::W;
-const LEFT_KEY: Key = Key::A;
-const RIGHT_KEY: Key = Key::D;
-const DOWN_KEY: Key = Key::S;
+const UP_KEY_INDEX: usize = 0;
+const LEFT_KEY_INDEX: usize = 1;
+const RIGHT_KEY_INDEX: usize = 2;
+const DOWN_KEY_INDEX: usize = 3;
 
 const ACCELERATION: i32 = 4;
 
+struct PlayerController {
+    pub player_direction: WorldVec,
+    pub keys: [Key; 4]
+}
+
+impl PlayerController {
+    fn player1() -> PlayerController {
+        PlayerController {
+            player_direction: WorldVec::with(WorldCoord::new(0)),
+            keys: [Key::W, Key::A, Key::D, Key::S],
+        }
+    }
+
+    fn player2() -> PlayerController {
+        PlayerController {
+            player_direction: WorldVec::with(WorldCoord::new(0)),
+            keys: [Key::Up, Key::Left, Key::Right, Key::Down],
+        }
+    }
+}
+
 pub struct Controller {
-    pub direction: WorldVec
+    player_controllers: [PlayerController; 2]
 }
 
 impl Controller {
     pub fn new() -> Controller {
-        Controller { direction: WorldVec::new(WorldCoord::new(0), WorldCoord::new(0)) }
+        Controller { player_controllers: [PlayerController::player1(), PlayerController::player2()] }
     }
 
     pub fn update(&mut self) {
-        let old_direction = self.direction;
+        for (index, player_controller) in self.player_controllers.iter_mut().enumerate() {
+            let mut left: i32 = 0;
+            let mut up: i32 = 0;
 
-        let mut up: i32 = 0;
-        let mut left: i32 = 0;
+            if player_controller.keys[LEFT_KEY_INDEX].is_pressed()  { left += ACCELERATION; }
+            if player_controller.keys[RIGHT_KEY_INDEX].is_pressed() { left -= ACCELERATION; }
 
-        if UP_KEY.is_pressed()    { up += ACCELERATION; }
-        if DOWN_KEY.is_pressed()  { up -= ACCELERATION; }
- 
-        if LEFT_KEY.is_pressed()  { left += ACCELERATION; }
-        if RIGHT_KEY.is_pressed() { left -= ACCELERATION; }
+            if player_controller.keys[UP_KEY_INDEX].is_pressed()    { up += ACCELERATION; }
+            if player_controller.keys[DOWN_KEY_INDEX].is_pressed()  { up -= ACCELERATION; }
 
-        self.direction.y = WorldCoord::new(up);
-        self.direction.x = WorldCoord::new(left);
+            player_controller.player_direction.x = WorldCoord::new(left);
+            player_controller.player_direction.y = WorldCoord::new(up);
+        }
+    }
+
+    pub fn get_direction(&self, player_index: usize) -> WorldVec {
+        self.player_controllers[player_index].player_direction
     }
 }

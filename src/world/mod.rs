@@ -19,6 +19,8 @@ impl World {
 	}
 
     pub fn update(&mut self, controller: &Controller) {
-        self.players[0].position = self.players[0].position + controller.direction;
+        for (i, player) in self.players.iter_mut().enumerate() {
+            player.position = player.position + controller.get_direction(i);
+        }
     }
 }
