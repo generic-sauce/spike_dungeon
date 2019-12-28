@@ -7,7 +7,7 @@ pub struct App {
 
 impl App {
     pub fn new() -> App {
-        App { window: RenderWindow::new(VideoMode::fullscreen_modes()[0], "Toa client", Style::FULLSCREEN | Style::CLOSE, &Default::default()) }
+        App { window: RenderWindow::new(VideoMode::fullscreen_modes()[0], "spike dungeon", Style::FULLSCREEN | Style::CLOSE, &Default::default()) }
     }
 
     pub fn run(&mut self) {
