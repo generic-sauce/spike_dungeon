@@ -35,6 +35,7 @@ impl App {
     pub fn render(&mut self) -> () {
         self.render_tiles();
         self.render_players();
+        self.render_bullets();
     }
 
     pub fn render_players(&mut self) {
@@ -42,6 +43,14 @@ impl App {
             let mut player_circle: CircleShape = CircleShape::new(32.0, 16);
             player_circle.set_position(Vector2f::new(player.position.x.0 as f32, player.position.y.0 as f32));
             self.window.draw(&player_circle);
+        }
+    }
+
+    pub fn render_bullets(&mut self) {
+        for bullet in self.world.bullets.iter() {
+            let mut bullet_circle: CircleShape = CircleShape::new(bullet.radius as f32, 8);
+            bullet_circle.set_position(Vector2f::new(bullet.position.x.0 as f32, bullet.position.y.0 as f32));
+            self.window.draw(&bullet_circle);
         }
     }
 }
