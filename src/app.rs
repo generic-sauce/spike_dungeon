@@ -1,13 +1,20 @@
+use crate::world::World;
+
 use sfml::graphics::{RenderTarget, RenderWindow, Color};
 use sfml::window::{VideoMode, Style, Event};
 
 pub struct App {
-    window: RenderWindow
+    window: RenderWindow,
+	#[allow(dead_code)]
+	world: World,
 }
 
 impl App {
     pub fn new() -> App {
-        App { window: RenderWindow::new(VideoMode::fullscreen_modes()[0], "spike dungeon", Style::FULLSCREEN | Style::CLOSE, &Default::default()) }
+        App {
+			window: RenderWindow::new(VideoMode::fullscreen_modes()[0], "spike dungeon", Style::FULLSCREEN | Style::CLOSE, &Default::default()),
+			world: World::new(),
+		}
     }
 
     pub fn run(&mut self) {

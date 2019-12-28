@@ -1,6 +1,8 @@
 extern crate sfml;
 
 mod app;
+mod vec;
+mod world;
 
 use app::App;
 
