@@ -18,6 +18,8 @@ impl Controller {
     }
 
     pub fn update(&mut self) {
+        let old_direction = self.direction;
+
         let mut up: i32 = 0;
         let mut left: i32 = 0;
 

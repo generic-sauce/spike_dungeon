@@ -5,7 +5,7 @@ use crate::world::World;
 use crate::app::controller::Controller;
 
 mod graphics;
-mod controller;
+pub mod controller;
 
 pub struct App {
     window: RenderWindow,
@@ -33,6 +33,7 @@ impl App {
             }
 
             self.controller.update();
+            self.world.update(&self.controller);
 
             self.render();
 

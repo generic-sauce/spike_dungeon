@@ -1,13 +1,13 @@
 use crate::vec::{WorldCoord, WorldVec};
 
 pub struct Player {
-	pos: WorldVec,
+	pub position: WorldVec,
 }
 
 impl Player {
 	pub fn new() -> Player {
 		Player {
-			pos: WorldVec::with(WorldCoord::new(0))
+			position: WorldVec::with(WorldCoord::new(0))
 		}
 	}
 }
