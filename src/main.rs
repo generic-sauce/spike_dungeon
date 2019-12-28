@@ -1,3 +1,10 @@
+extern crate sfml;
+
+mod app;
+
+use app::App;
+
 fn main() {
-    println!("lets do it!!!");
+    let mut app = App::new();
+    app.run();
 }
