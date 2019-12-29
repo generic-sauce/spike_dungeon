@@ -3,8 +3,8 @@ use sfml::graphics::{Image, Color};
 
 use crate::vec::{TileVec, TileCoord};
 
-pub const SIZE: TileVec = TileVec::new(TileCoord::new(32), TileCoord::new(32));
-lazy_static! { static ref SIZE_F: Vector2f = Vector2f::new(SIZE.x.0 as f32, SIZE.y.0 as f32); }
+pub const TILEMAP_SIZE: TileVec = TileVec::new(TileCoord::new(32), TileCoord::new(32));
+lazy_static! { static ref TILEMAP_SIZE_F: Vector2f = Vector2f::new(TILEMAP_SIZE.x.0 as f32, TILEMAP_SIZE.y.0 as f32); }
 
 static TILES: [Tile; 3] = [Tile::GROUND, Tile::WALL, Tile::SPIKE];
 
@@ -26,7 +26,7 @@ impl Tile {
 }
 
 pub struct TileMap {
-	pub tiles: [[Tile; SIZE.y.0 as usize]; SIZE.x.0 as usize],
+	pub tiles: [[Tile; TILEMAP_SIZE.y.0 as usize]; TILEMAP_SIZE.x.0 as usize],
 }
 
 impl TileMap {

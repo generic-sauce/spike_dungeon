@@ -9,10 +9,10 @@ use crate::vec::WorldCoord;
 use crate::vec::TileVec;
 use crate::vec::TileCoord;
 
-use crate::world::tilemap::SIZE;
-use crate::world::TILESIZE_F;
-
 const PLAYER_RADIUS: f32 = 32.0;
+
+use crate::world::tilemap::TILEMAP_SIZE;
+use crate::world::TILESIZE_F;
 
 impl App {
     pub fn render_tile(&mut self, pos: TileVec, color: Color) {
@@ -23,8 +23,8 @@ impl App {
     }
 
     pub fn render_tiles(&mut self) {
-        for y in 0..SIZE.x.0 as usize {
-            for x in 0..SIZE.y.0 as usize {
+        for y in 0..TILEMAP_SIZE.x.0 as usize {
+            for x in 0..TILEMAP_SIZE.y.0 as usize {
 				let c = self.world.tilemap.tiles[x][y].get_color().clone();
                 self.render_tile(TileVec::new(TileCoord::new(x as i32), TileCoord::new(y as i32)), c);
             }
