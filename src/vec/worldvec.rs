@@ -1,7 +1,6 @@
 use std::cmp::{max, min};
 use std::ops::{Add, Sub, Mul, Div};
 use std::fmt::{Display, Debug, Error, Formatter};
-use std::hash::{Hash, Hasher};
 
 #[derive(Clone, Copy, PartialEq, Eq, Hash)]
 pub struct WorldVec {

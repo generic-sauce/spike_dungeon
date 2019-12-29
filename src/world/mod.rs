@@ -1,5 +1,3 @@
-use std::cmp::{max, min};
-
 use crate::world::tilemap::Tile;
 pub use crate::vec::TILESIZE;
 
@@ -51,12 +49,11 @@ impl World {
     }
 
 	fn deglitch_players(&mut self) {
-        for (i, player) in self.players.iter_mut().enumerate() {
+        for player in self.players.iter_mut() {
 			let player_tilepos: TileVec = player.position.into();
 
 			for pos in player_tilepos.iter_around(4) { // TODO
 				if self.tilemap.get_tile(pos) != Tile::WALL { continue; }
-				let TileVec { x, y } = pos;
 				let closest_tilepoint = player.position.max(pos.into()).min((pos+1).into());
 				let dist = player.position - closest_tilepoint;
 				let dist_len = dist.length();

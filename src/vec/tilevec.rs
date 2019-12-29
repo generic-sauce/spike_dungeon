@@ -1,6 +1,5 @@
 use std::ops::{Add, Sub, Mul, Div};
 use std::fmt::{Display, Debug, Error, Formatter};
-use std::hash::{Hash, Hasher};
 use std::cmp::{min, max};
 
 use crate::world::TILEMAP_SIZE;

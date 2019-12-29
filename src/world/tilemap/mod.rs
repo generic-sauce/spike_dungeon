@@ -1,4 +1,3 @@
-use sfml::system::{Vector2f};
 use sfml::graphics::{Image, Color};
 
 use crate::vec::TileVec;
@@ -39,14 +38,14 @@ impl TileMap {
 		assert!(img.size().x == 32);
 		assert!(img.size().y == 32);
 
-        let mut tiles = [[Tile::GROUND; 32]; 32];
+        let mut tilemap = TileMap::new();
 		
 		for p in TileVec::iter_all() {
 			let c = img.pixel_at(p.x as u32, p.y as u32);
 			let t = TILES.iter().find(|t| t.get_color() == c).unwrap();
-			tiles[p.x as usize][p.y as usize] = *t;
+			tilemap.set_tile(p, *t);
 		}
-		TileMap { tiles }
+		tilemap
 	}
 
 	pub fn set_tile(&mut self, pos: TileVec, t: Tile) {

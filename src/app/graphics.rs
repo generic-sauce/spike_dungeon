@@ -1,14 +1,12 @@
 use sfml::system::Vector2f;
-use sfml::graphics::{RenderTarget, RenderWindow, Color, RectangleShape, Shape, Transformable, Sprite, CircleShape};
-use sfml::window::{VideoMode, Style, Event};
+use sfml::graphics::{RenderTarget, Color, RectangleShape, Shape, Transformable, CircleShape};
 
 use crate::app::App;
-use crate::world::World;
 use crate::vec::{TileVec, WorldVec};
 
 const PLAYER_RADIUS: f32 = 32.0;
 
-use crate::world::{TILEMAP_SIZE, TILESIZE};
+use crate::world::TILESIZE;
 
 impl App {
     pub fn render_tile(&mut self, pos: TileVec, color: Color) {

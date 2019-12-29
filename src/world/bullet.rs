@@ -14,7 +14,7 @@ impl Bullet {
 
     pub fn update(&mut self) {
         self.position = self.position + self.speed;
-        if (self.time_to_live > 0) {
+        if self.time_to_live > 0 {
             self.time_to_live -= 1;
         }
     }

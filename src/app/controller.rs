@@ -43,7 +43,7 @@ impl Controller {
     }
 
     pub fn update(&mut self) {
-        for (index, player_controller) in self.player_controllers.iter_mut().enumerate() {
+        for player_controller in self.player_controllers.iter_mut() {
             let mut right: i32 = 0;
             let mut up: i32 = 0;
 

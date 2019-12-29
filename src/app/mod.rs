@@ -35,7 +35,6 @@ impl App {
             }
 
             let window_size = Vector2f::new(self.window.size().x as f32, self.window.size().y as f32);
-            let aspect_ratio = window_size.x / window_size.y;
             let border_width_x = 0f32.max(window_size.x - window_size.y) / 2.0;
             let border_width_y = 0f32.max(window_size.y - window_size.x) / 2.0;
             let scale = window_size.y / WORLD_SIZE.y as f32;

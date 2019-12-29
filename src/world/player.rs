@@ -15,7 +15,7 @@ impl Player {
 
     pub fn update(&mut self, direction: WorldVec) {
         self.position = self.position + direction;
-        if (self.skill1_cooldown > 0) {
+        if self.skill1_cooldown > 0 {
             self.skill1_cooldown -= 1;
         }
     }
