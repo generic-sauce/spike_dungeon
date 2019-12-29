@@ -1,4 +1,4 @@
-use crate::vec::{WorldCoord, WorldVec};
+use crate::vec::WorldVec;
 
 pub struct Bullet {
 	pub position: WorldVec,

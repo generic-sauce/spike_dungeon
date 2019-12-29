@@ -1,10 +1,9 @@
 use sfml::system::{Vector2f};
 use sfml::graphics::{Image, Color};
 
-use crate::vec::{TileVec, TileCoord};
+use crate::vec::TileVec;
 
-pub const TILEMAP_SIZE: TileVec = TileVec::new(TileCoord::new(32), TileCoord::new(32));
-lazy_static! { static ref TILEMAP_SIZE_F: Vector2f = Vector2f::new(TILEMAP_SIZE.x.0 as f32, TILEMAP_SIZE.y.0 as f32); }
+pub const TILEMAP_SIZE: TileVec = TileVec::new(32, 32);
 
 static TILES: [Tile; 3] = [Tile::GROUND, Tile::WALL, Tile::SPIKE];
 
@@ -26,7 +25,7 @@ impl Tile {
 }
 
 pub struct TileMap {
-	pub tiles: [[Tile; TILEMAP_SIZE.y.0 as usize]; TILEMAP_SIZE.x.0 as usize],
+	tiles: [[Tile; TILEMAP_SIZE.y as usize]; TILEMAP_SIZE.x as usize],
 }
 
 impl TileMap {
@@ -42,21 +41,19 @@ impl TileMap {
 
         let mut tiles = [[Tile::GROUND; 32]; 32];
 		
-		for p in iter_tiles() {
-			let c = img.pixel_at(p.x.0 as u32, p.y.0 as u32);
+		for p in TileVec::iter_all() {
+			let c = img.pixel_at(p.x as u32, p.y as u32);
 			let t = TILES.iter().find(|t| t.get_color() == c).unwrap();
-			tiles[p.x.0 as usize][p.y.0 as usize] = *t;
+			tiles[p.x as usize][p.y as usize] = *t;
 		}
 		TileMap { tiles }
 	}
 
 	pub fn set_tile(&mut self, pos: TileVec, t: Tile) {
-		self.tiles[pos.x.0 as usize][pos.y.0 as usize] = t;
+		self.tiles[pos.x as usize][pos.y as usize] = t;
+	}
+
+	pub fn get_tile(&self, pos: TileVec) -> Tile {
+		self.tiles[pos.x as usize][pos.y as usize]
 	}
 }
-
-pub fn iter_tiles() -> impl Iterator<Item=TileVec> {
-	iproduct!(0..32, 0..32)
-		.map(|(x, y)| TileVec::new(TileCoord(x), TileCoord(y)))
-}
-

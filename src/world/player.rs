@@ -1,4 +1,4 @@
-use crate::vec::{WorldCoord, WorldVec};
+use crate::vec::WorldVec;
 
 pub struct Player {
 	pub position: WorldVec,
@@ -8,7 +8,7 @@ pub struct Player {
 impl Player {
 	pub fn new() -> Player {
 		Player {
-			position: WorldVec::with(WorldCoord::new(0)),
+			position: WorldVec::with(0),
             skill1_cooldown: 0
 		}
 	}

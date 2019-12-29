@@ -1,5 +1,5 @@
 use sfml::window::Key;
-use crate::vec::{WorldVec, WorldCoord};
+use crate::vec::WorldVec;
 
 const UP_KEY_INDEX: usize = 0;
 const LEFT_KEY_INDEX: usize = 1;
@@ -18,7 +18,7 @@ struct PlayerController {
 impl PlayerController {
     fn player1() -> PlayerController {
         PlayerController {
-            player_direction: WorldVec::with(WorldCoord::new(0)),
+            player_direction: WorldVec::with(0),
             skill1_used: false,
             keys: [Key::W, Key::A, Key::D, Key::S, Key::Q],
         }
@@ -26,7 +26,7 @@ impl PlayerController {
 
     fn player2() -> PlayerController {
         PlayerController {
-            player_direction: WorldVec::with(WorldCoord::new(0)),
+            player_direction: WorldVec::with(0),
             skill1_used: false,
             keys: [Key::Up, Key::Left, Key::Right, Key::Down, Key::Dash],
         }
@@ -55,8 +55,8 @@ impl Controller {
 
             player_controller.skill1_used = player_controller.keys[SKILL1_KEY_INDEX].is_pressed();
 
-            player_controller.player_direction.x = WorldCoord::new(right);
-            player_controller.player_direction.y = WorldCoord::new(up);
+            player_controller.player_direction.x = right;
+            player_controller.player_direction.y = up;
         }
     }
 
