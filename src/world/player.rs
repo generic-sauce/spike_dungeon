@@ -25,6 +25,6 @@ impl Player {
     }
 
     pub fn reset_skill1_cooldown(&mut self) {
-        self.skill1_cooldown = 30;
+        self.skill1_cooldown = 10;
     }
 }
