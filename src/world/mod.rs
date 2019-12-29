@@ -11,6 +11,7 @@ use tilemap::TileMap;
 use crate::vec::{TileVec, WorldVec};
 use crate::app::controller::Controller;
 
+pub const PLAYER_RADIUS: i32 = 32;
 pub use self::tilemap::TILEMAP_SIZE;
 
 lazy_static! {
@@ -59,8 +60,8 @@ impl World {
 				let dist_len = dist.length();
 				let dist_norm = dist / dist_len;
 
-				if dist_len <= 32 {
-					player.position = closest_tilepoint + dist_norm * 32; // TODO un-hardcode
+				if dist_len <= PLAYER_RADIUS {
+					player.position = closest_tilepoint + dist_norm * PLAYER_RADIUS;
 				}
 			}
         }

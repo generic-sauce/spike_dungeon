@@ -4,9 +4,7 @@ use sfml::graphics::{RenderTarget, Color, RectangleShape, Shape, Transformable, 
 use crate::app::App;
 use crate::vec::{TileVec, WorldVec};
 
-const PLAYER_RADIUS: f32 = 32.0;
-
-use crate::world::TILESIZE;
+use crate::world::{TILESIZE, PLAYER_RADIUS};
 
 impl App {
     pub fn render_tile(&mut self, pos: TileVec, color: Color) {
@@ -31,9 +29,9 @@ impl App {
 
     pub fn render_players(&mut self) {
         for player in self.world.players.iter() {
-            let mut player_circle: CircleShape = CircleShape::new(PLAYER_RADIUS, 16);
+            let mut player_circle: CircleShape = CircleShape::new(PLAYER_RADIUS as f32, 16);
             player_circle.set_position(Vector2f::from(WorldVec::from(player.position)));
-            player_circle.set_origin(Vector2f::new(PLAYER_RADIUS, PLAYER_RADIUS));
+            player_circle.set_origin(Vector2f::new(PLAYER_RADIUS as f32, PLAYER_RADIUS as f32));
             self.window.draw(&player_circle);
         }
     }

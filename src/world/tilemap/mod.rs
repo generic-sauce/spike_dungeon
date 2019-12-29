@@ -29,14 +29,14 @@ pub struct TileMap {
 
 impl TileMap {
 	pub fn new() -> TileMap {
-        let tiles = [[Tile::GROUND; 32]; 32];
+        let tiles = [[Tile::GROUND; TILEMAP_SIZE.y as usize]; TILEMAP_SIZE.x as usize];
 		TileMap { tiles }
 	}
 
 	pub fn from_filename(filename: &str) -> TileMap {
 		let img = Image::from_file(filename).unwrap();
-		assert!(img.size().x == 32);
-		assert!(img.size().y == 32);
+		assert!(img.size().x == TILEMAP_SIZE.x as u32);
+		assert!(img.size().y == TILEMAP_SIZE.y as u32);
 
         let mut tilemap = TileMap::new();
 		
