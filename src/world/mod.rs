@@ -55,13 +55,15 @@ impl World {
 					if self.tilemap.tiles[x as usize][y as usize] != Tile::WALL { continue; }
 					let closest_tile_x = min((x+1) * TILESIZE, max(x * TILESIZE, player.position.x.0));
 					let closest_tile_y = min((y+1) * TILESIZE, max(y * TILESIZE, player.position.y.0));
-					let distx = closest_tile_x - player.position.x.0;
-					let disty = closest_tile_y - player.position.y.0;
-					let dist_sqr = (distx * distx) + (disty * disty);
+					let distx = -1 * (closest_tile_x - player.position.x.0);
+					let disty = -1 * (closest_tile_y - player.position.y.0);
+					let dist = (((distx * distx) + (disty * disty)) as f32).sqrt() as i32;
+					let distx_norm = distx / dist;
+					let disty_norm = disty / dist;
 
-					if dist_sqr <= 32*32 {
-						player.position.x.0 = player.position.x.0 - distx;
-						player.position.y.0 = player.position.y.0 - disty;
+					if dist <= 32 {
+						player.position.x.0 = closest_tile_x + distx_norm * 32;
+						player.position.y.0 = closest_tile_y + disty_norm * 32;
 					}
 					
 				}
