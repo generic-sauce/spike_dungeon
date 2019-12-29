@@ -10,18 +10,17 @@ use crate::vec::TileVec;
 use crate::vec::TileCoord;
 
 use crate::world::tilemap::SIZE;
-use crate::world::TILE_SIZE_F;
+use crate::world::TILESIZE_F;
 
 impl App {
     pub fn render_tile(&mut self, pos: TileVec, color: Color) {
-        let mut tile = RectangleShape::with_size(Vector2f::new(TILE_SIZE_F, TILE_SIZE_F));
+        let mut tile = RectangleShape::with_size(Vector2f::new(TILESIZE_F, TILESIZE_F));
         tile.set_fill_color(color);
-        tile.set_position(Vector2f::new(pos.x.0 as f32 * TILE_SIZE_F, pos.y.0 as f32 * TILE_SIZE_F));
+        tile.set_position(Vector2f::new(pos.x.to_world_coord().0 as f32, pos.y.to_world_coord().0 as f32));
         self.window.draw(&tile);
     }
 
     pub fn render_tiles(&mut self) {
-
         for y in 0..SIZE.x.0 as usize {
             for x in 0..SIZE.y.0 as usize {
 				let c = self.world.tilemap.tiles[x][y].get_color().clone();

@@ -1,4 +1,4 @@
-use crate::vec::{WorldCoord, WORLD_FACTOR};
+use crate::vec::{WorldCoord, TILESIZE};
 
 use std::ops::{Add, Mul, Sub};
 
@@ -32,8 +32,8 @@ impl Sub for TileCoord {
 impl TileCoord {
 	pub const fn new(x: i32) -> TileCoord { Self(x) }
 
-	fn to_world_coord(self) -> WorldCoord {
-		WorldCoord::new(self.0 * WORLD_FACTOR)
+	pub fn to_world_coord(self) -> WorldCoord {
+		WorldCoord::new(self.0 * TILESIZE)
 	}
 }
 

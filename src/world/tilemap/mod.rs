@@ -8,7 +8,7 @@ lazy_static! { static ref SIZE_F: Vector2f = Vector2f::new(SIZE.x.0 as f32, SIZE
 
 static TILES: [Tile; 3] = [Tile::GROUND, Tile::WALL, Tile::SPIKE];
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub enum Tile {
 	GROUND,
 	WALL,

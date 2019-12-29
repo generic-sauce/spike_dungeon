@@ -1,4 +1,4 @@
-pub const WORLD_FACTOR: i32 = 64;
+pub const TILESIZE: i32 = 32;
 
 mod tilecoord;
 mod worldcoord;
