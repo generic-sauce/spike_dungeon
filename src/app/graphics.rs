@@ -12,6 +12,8 @@ use crate::vec::TileCoord;
 use crate::world::tilemap::SIZE;
 use crate::world::TILE_SIZE_F;
 
+const PLAYER_RADIUS: f32 = 32.0;
+
 impl App {
     pub fn render_tile(&mut self, pos: TileVec, color: Color) {
         let mut tile = RectangleShape::with_size(Vector2f::new(TILE_SIZE_F, TILE_SIZE_F));
@@ -21,7 +23,6 @@ impl App {
     }
 
     pub fn render_tiles(&mut self) {
-
         for y in 0..SIZE.x.0 as usize {
             for x in 0..SIZE.y.0 as usize {
 				let c = self.world.tilemap.tiles[x][y].get_color().clone();
@@ -38,8 +39,9 @@ impl App {
 
     pub fn render_players(&mut self) {
         for player in self.world.players.iter() {
-            let mut player_circle: CircleShape = CircleShape::new(32.0, 16);
+            let mut player_circle: CircleShape = CircleShape::new(PLAYER_RADIUS, 16);
             player_circle.set_position(Vector2f::new(player.position.x.0 as f32, player.position.y.0 as f32));
+            player_circle.set_origin(Vector2f::new(PLAYER_RADIUS, PLAYER_RADIUS));
             self.window.draw(&player_circle);
         }
     }
@@ -48,6 +50,7 @@ impl App {
         for bullet in self.world.bullets.iter() {
             let mut bullet_circle: CircleShape = CircleShape::new(bullet.radius as f32, 8);
             bullet_circle.set_position(Vector2f::new(bullet.position.x.0 as f32, bullet.position.y.0 as f32));
+            bullet_circle.set_origin(Vector2f::new(bullet.radius as f32, bullet.radius as f32));
             self.window.draw(&bullet_circle);
         }
     }
