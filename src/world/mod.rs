@@ -10,10 +10,16 @@ pub mod bullet;
 use player::Player;
 use bullet::Bullet;
 use tilemap::TileMap;
-use crate::app::controller::Controller;
+use crate::vec::TileVec;
+use crate::vec::TileCoord;
+use crate::vec::WorldVec;
 use crate::vec::WorldCoord;
+use crate::app::controller::Controller;
+use crate::world::tilemap::TILEMAP_SIZE;
 
 pub const TILESIZE_F: f32 = TILESIZE as f32;
+
+pub const WORLD_SIZE: TileVec = TileVec::new(TileCoord::new(TILEMAP_SIZE.x.0 as i32 * TILESIZE), TileCoord::new(TILEMAP_SIZE.y.0 as i32 * TILESIZE));
 
 pub struct World {
 	pub players: [Player; 2],
