@@ -1,3 +1,4 @@
+use std::cmp::{max, min};
 use std::ops::{Add, Sub, Mul, Div};
 use std::fmt::{Display, Debug, Error, Formatter};
 use std::hash::{Hash, Hasher};
@@ -15,6 +16,18 @@ impl WorldVec {
 
 	pub const fn with(xy: i32) -> WorldVec {
 		WorldVec { x: xy, y: xy }
+	}
+
+	pub fn max(self, v: WorldVec) -> WorldVec {
+		WorldVec { x: max(v.x, self.x), y: max(v.y, self.y) }
+	}
+
+	pub fn min(self, v: WorldVec) -> WorldVec {
+		WorldVec { x: min(v.x, self.x), y: min(v.y, self.y) }
+	}
+
+	pub fn length(self) -> i32 {
+		((self.x * self.x + self.y * self.y) as f32).sqrt() as i32
 	}
 }
 

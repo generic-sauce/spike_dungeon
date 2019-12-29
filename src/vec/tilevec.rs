@@ -20,6 +20,14 @@ impl TileVec {
 		TileVec { x: xy, y: xy }
 	}
 
+	pub fn max(self, v: TileVec) -> TileVec {
+		TileVec { x: max(v.x, self.x), y: max(v.y, self.y) }
+	}
+
+	pub fn min(self, v: TileVec) -> TileVec {
+		TileVec { x: min(v.x, self.x), y: min(v.y, self.y) }
+	}
+
 	pub fn iter_all() -> impl Iterator<Item=TileVec> {
 		iproduct!(0..TILEMAP_SIZE.x, 0..TILEMAP_SIZE.y)
 			.map(|(x, y)| TileVec::new(x, y))

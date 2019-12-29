@@ -57,17 +57,13 @@ impl World {
 			for pos in player_tilepos.iter_around(4) { // TODO
 				if self.tilemap.get_tile(pos) != Tile::WALL { continue; }
 				let TileVec { x, y } = pos;
-				let closest_tile_x = min((x+1) * TILESIZE, max(x * TILESIZE, player.position.x));
-				let closest_tile_y = min((y+1) * TILESIZE, max(y * TILESIZE, player.position.y));
-				let distx = -1 * (closest_tile_x - player.position.x);
-				let disty = -1 * (closest_tile_y - player.position.y);
-				let dist = (((distx * distx) + (disty * disty)) as f32).sqrt() as i32;
-				let distx_norm = distx / dist;
-				let disty_norm = disty / dist;
+				let closest_tilepoint = player.position.max(pos.into()).min((pos+1).into());
+				let dist = player.position - closest_tilepoint;
+				let dist_len = dist.length();
+				let dist_norm = dist / dist_len;
 
-				if dist <= 32 {
-					player.position.x = closest_tile_x + distx_norm * 32; // TODO unhardcode
-					player.position.y = closest_tile_y + disty_norm * 32;
+				if dist_len <= 32 {
+					player.position = closest_tilepoint + dist_norm * 32; // TODO un-hardcode
 				}
 			}
         }
